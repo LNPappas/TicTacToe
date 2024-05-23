@@ -1,0 +1,25 @@
+#game-hints {
+  text-align: center;
+  color: #46432f;
+}
+
+#game-hints h2 {
+  font-family: "Caprasimo", cursive;
+  font-size: 2rem;
+  margin: 0;
+}
+
+#game-hints ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#game-hints button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #23221f;
+  font: inherit;
+  margin-top: 1.5rem;
+}

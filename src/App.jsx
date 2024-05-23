@@ -1,5 +1,14 @@
+import Players from "./components/Players";
+import "./App.css";
+
 function App() {
-  return <h1>Tic-Tac-Toe</h1>;
+  return (
+    <main>
+      <div id="game-container">
+        <Players />
+      </div>
+    </main>
+  );
 }
 
 export default App;
