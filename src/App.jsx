@@ -10,20 +10,7 @@ function getActivePlayer(gameTurns) {
   return gameTurns.length > 0 && gameTurns[0].player === "X" ? "O" : "X";
 }
 
-function App() {
-  const [players, setPlayers] = useState(INITIAL_PLAYERS);
-  const [gameTurns, setGameTurns] = useState([]);
-  console.log(players);
-
-  const gameBoard = [...INITIAL_BOARD.map((inner) => [...inner])];
-
-  gameTurns.forEach((turn) => {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  });
-
+function getWinner(gameBoard, players) {
   let winner;
   WINNING_COMBINATIONS.forEach((combination) => {
     const firstSquare = gameBoard[combination[0].row][combination[0].column];
@@ -38,8 +25,29 @@ function App() {
       winner = players[firstSquare];
     }
   });
+  return winner;
+}
 
+function getGameBoard(gameTurns) {
+  const gameBoard = [...INITIAL_BOARD.map((inner) => [...inner])];
+
+  gameTurns.forEach((turn) => {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player;
+  });
+
+  return gameBoard;
+}
+
+function App() {
+  const [players, setPlayers] = useState(INITIAL_PLAYERS);
+  const [gameTurns, setGameTurns] = useState([]);
+
+  const gameBoard = getGameBoard(gameTurns);
   const activePlayer = getActivePlayer(gameTurns);
+  const winner = getWinner(gameBoard, players);
   const hasDraw = gameTurns.length === 9 && !winner;
 
   function handleSelectSquare(rowIndex, colIndex) {
